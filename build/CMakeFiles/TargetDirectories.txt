@@ -1,0 +1,3 @@
+C:/Users/shrey/OneDrive/Documents/FORGE-MIND-AI/build/CMakeFiles/FORGE_MIND_AI.dir
+C:/Users/shrey/OneDrive/Documents/FORGE-MIND-AI/build/CMakeFiles/edit_cache.dir
+C:/Users/shrey/OneDrive/Documents/FORGE-MIND-AI/build/CMakeFiles/rebuild_cache.dir
