@@ -1,5 +1,6 @@
+#include <filesystem>
+#include <fstream>
 #include "utils/Logger.hpp"
-
 #include <chrono>
 #include <ctime>
 #include <iomanip>
@@ -8,7 +9,30 @@
 
 namespace ForgeMind
 {
+    std::ofstream Logger::logFile;
+    void Logger::initialize()
+    {
+        std::filesystem::create_directories("logs");
 
+        logFile.open("logs/forge_mind_ai.log", std::ios::app);
+
+        if (logFile.is_open())
+        {
+            logFile << "\n============================================\n";
+            logFile << "FORGE MIND AI Session Started\n";
+            logFile << "============================================\n";
+        }
+    }
+
+    void Logger::shutdown()
+    {
+        if (logFile.is_open())
+        {
+            logFile << "Session Ended\n";
+
+            logFile.close();
+        }
+    }
     std::string Logger::getCurrentTime()
     {
         auto now = std::chrono::system_clock::now();
@@ -54,6 +78,7 @@ namespace ForgeMind
     void Logger::log(LogLevel level, const std::string &message)
     {
         std::cout
+
             << "["
             << getCurrentTime()
             << "] "
@@ -62,6 +87,19 @@ namespace ForgeMind
             << "] "
             << message
             << std::endl;
+
+        if (logFile.is_open())
+        {
+            logFile
+                << "["
+                << getCurrentTime()
+                << "] "
+                << "["
+                << levelToString(level)
+                << "] "
+                << message
+                << std::endl;
+        }
     }
 
     void Logger::info(const std::string &message)
@@ -83,5 +121,4 @@ namespace ForgeMind
     {
         log(LogLevel::DEBUG, message);
     }
-
 }

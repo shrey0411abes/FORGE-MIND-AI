@@ -1,10 +1,17 @@
 #include "core/Application.hpp"
 #include "utils/Logger.hpp"
+
 namespace ForgeMind
 {
     Application::Application()
     {
+        Logger::initialize();
         Logger::info("Application initialized.");
+    }
+
+    Application::~Application()
+    {
+        Logger::shutdown();
     }
 
     int Application::run()

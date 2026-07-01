@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fstream>
 #include <string>
 
 namespace ForgeMind
@@ -15,6 +16,10 @@ namespace ForgeMind
     class Logger
     {
     public:
+        static void initialize();
+
+        static void shutdown();
+
         static void log(LogLevel level, const std::string &message);
 
         static void info(const std::string &message);
@@ -26,6 +31,8 @@ namespace ForgeMind
         static void debug(const std::string &message);
 
     private:
+        static std::ofstream logFile;
+
         static std::string getCurrentTime();
 
         static std::string levelToString(LogLevel level);

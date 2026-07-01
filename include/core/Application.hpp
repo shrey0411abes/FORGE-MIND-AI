@@ -6,6 +6,7 @@ namespace ForgeMind
     {
     public:
         Application();
+        ~Application();
 
         int run();
     };
